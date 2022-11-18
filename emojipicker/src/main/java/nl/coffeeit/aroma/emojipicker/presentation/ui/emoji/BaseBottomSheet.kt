@@ -35,12 +35,12 @@ import nl.coffeeit.aroma.emojipicker.R
 
 open class BaseBottomSheet : BottomSheetDialogFragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        dialog?.window?.attributes?.windowAnimations = R.style.MyDialogAnimation
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    dialog?.window?.attributes?.windowAnimations = R.style.MyDialogAnimation
+    return super.onCreateView(inflater, container, savedInstanceState)
+  }
 }

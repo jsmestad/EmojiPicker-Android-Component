@@ -35,27 +35,27 @@ import nl.coffeeit.aroma.emojipicker.sample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private var emojiBottomSheetDialogFragment: BottomSheetDialogFragment? = null
+  private var emojiBottomSheetDialogFragment: BottomSheetDialogFragment? = null
 
-    lateinit var binding: ActivityMainBinding
+  lateinit var binding: ActivityMainBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        setEmojiPicker()
-        setListener()
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+    setEmojiPicker()
+    setListener()
+  }
+
+  private fun setEmojiPicker() {
+    emojiBottomSheetDialogFragment = EmojiBottomSheet.newInstance({ emoji ->
+      binding.emoji = emoji.emoji
+      emojiBottomSheetDialogFragment?.dismiss()
+    })
+  }
+
+  private fun setListener() {
+    binding.actionShow.setOnClickListener {
+      emojiBottomSheetDialogFragment?.show(supportFragmentManager, EmojiBottomSheet.TAG)
     }
-
-    private fun setEmojiPicker() {
-        emojiBottomSheetDialogFragment = EmojiBottomSheet.newInstance({ emoji ->
-            binding.emoji = emoji.emoji
-            emojiBottomSheetDialogFragment?.dismiss()
-        })
-    }
-
-    private fun setListener() {
-        binding.actionShow.setOnClickListener {
-            emojiBottomSheetDialogFragment?.show(supportFragmentManager, EmojiBottomSheet.TAG)
-        }
-    }
+  }
 }

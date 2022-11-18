@@ -39,18 +39,18 @@ import nl.coffeeit.aroma.emojipicker.domain.repository.EmojiRepository
 @Module
 @InstallIn(ViewModelComponent::class)
 object ViewModelModule {
-    @ViewScoped
-    @Provides
-    fun provideEmojiRepository(): EmojiRepository = EmojiRepository()
+  @ViewScoped
+  @Provides
+  fun provideEmojiRepository(): EmojiRepository = EmojiRepository()
 
-    @ViewScoped
-    @Provides
-    fun provideSharedPreferencesHelper(context: Context): SharedPreferencesHelper {
-        return SharedPreferencesHelper(
-            context.getSharedPreferences(
-                KEY_SHARED_PREFERENCES,
-                Context.MODE_PRIVATE
-            )
-        )
-    }
+  @ViewScoped
+  @Provides
+  fun provideSharedPreferencesHelper(context: Context): SharedPreferencesHelper {
+    return SharedPreferencesHelper(
+      context.getSharedPreferences(
+        KEY_SHARED_PREFERENCES,
+        Context.MODE_PRIVATE
+      )
+    )
+  }
 }

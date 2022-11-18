@@ -38,37 +38,37 @@ import nl.coffeeit.aroma.emojipicker.presentation.adapter.emoji.view_holder.Extr
 import nl.coffeeit.aroma.emojipicker.presentation.adapter.emoji.view_holder.TitleViewHolder
 
 class CardViewHolderFactory(
-    private val listener: EmojiItemClickListener
+  private val listener: EmojiItemClickListener
 ) {
-    fun getViewHolder(parent: ViewGroup, type: ListItem.Type): RecyclerView.ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
+  fun getViewHolder(parent: ViewGroup, type: ListItem.Type): RecyclerView.ViewHolder {
+    val inflater = LayoutInflater.from(parent.context)
 
-        return when (type) {
-            ListItem.Type.TITLE -> {
-                TitleViewHolder(ItemTitleBinding.inflate(inflater, parent, false))
-            }
-            ListItem.Type.EMOJI -> {
-                ExtraTitleViewHolder(ItemExtraTitleBinding.inflate(inflater, parent, false), listener)
-            }
-            ListItem.Type.UNKNOWN -> throw IllegalArgumentException("Filter out unknown types")
-        }
+    return when (type) {
+      ListItem.Type.TITLE -> {
+        TitleViewHolder(ItemTitleBinding.inflate(inflater, parent, false))
+      }
+      ListItem.Type.EMOJI -> {
+        ExtraTitleViewHolder(ItemExtraTitleBinding.inflate(inflater, parent, false), listener)
+      }
+      ListItem.Type.UNKNOWN -> throw IllegalArgumentException("Filter out unknown types")
     }
+  }
 
-    fun getBinding(item: ListItem, viewHolder: RecyclerView.ViewHolder) {
-        return when (item.type) {
-            ListItem.Type.TITLE -> (viewHolder as TitleViewHolder).bind(item as Title)
-            ListItem.Type.EMOJI -> (viewHolder as ExtraTitleViewHolder).bind(item as Emoji)
-            ListItem.Type.UNKNOWN -> throw IllegalArgumentException("Filter out unknown types")
-        }
+  fun getBinding(item: ListItem, viewHolder: RecyclerView.ViewHolder) {
+    return when (item.type) {
+      ListItem.Type.TITLE -> (viewHolder as TitleViewHolder).bind(item as Title)
+      ListItem.Type.EMOJI -> (viewHolder as ExtraTitleViewHolder).bind(item as Emoji)
+      ListItem.Type.UNKNOWN -> throw IllegalArgumentException("Filter out unknown types")
     }
+  }
 
-    fun areContentsTheSame(oldItemCard: ListItem, newItemCard: ListItem): Boolean {
-        if (oldItemCard.type != newItemCard.type) return false
-        return oldItemCard == newItemCard
-    }
+  fun areContentsTheSame(oldItemCard: ListItem, newItemCard: ListItem): Boolean {
+    if (oldItemCard.type != newItemCard.type) return false
+    return oldItemCard == newItemCard
+  }
 
-    fun areItemsTheSame(oldItemCard: ListItem, newItemCard: ListItem): Boolean {
-        if (oldItemCard.type != newItemCard.type) return false
-        return oldItemCard.id == newItemCard.id
-    }
+  fun areItemsTheSame(oldItemCard: ListItem, newItemCard: ListItem): Boolean {
+    if (oldItemCard.type != newItemCard.type) return false
+    return oldItemCard.id == newItemCard.id
+  }
 }
